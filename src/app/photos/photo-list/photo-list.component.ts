@@ -12,6 +12,7 @@ import { Photo } from '../photo/photo';
 export class PhotoListComponent implements OnInit {
 
   photos: Photo[] = [];
+  filter: string = 'Dado inicial';
 
   constructor(private photoService: PhotoService,
     private activatedRoute: ActivatedRoute
