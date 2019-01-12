@@ -48,12 +48,12 @@ export class PhotoListComponent implements OnInit, OnDestroy {
 
   load() {
     this.photoService.listFromUserPaginated(this.userName, ++this.currentPage)
-    .subscribe(photos => {
+    .subscribe(fotosDoServidor => {
       //this.photos.push(...photos); //Os ... seria o mesmo de um FOR, ele pega todos os itens de photos e adiciona no push
-      this.photos = this.photos.concat(photos);
+      this.photos = this.photos.concat(fotosDoServidor);
 
-      console.log(photos.length);
-    if (photos.length == 0) {
+      console.log(fotosDoServidor.length);
+    if (fotosDoServidor.length == 0) {
       this.hasMore = false;
     }
     });
