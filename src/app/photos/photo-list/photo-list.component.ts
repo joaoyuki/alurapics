@@ -17,9 +17,12 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   photos: Photo[] = [];
   filter: string = 'Dado inicial';
   debounce: Subject<string> = new Subject<string>();
+  hasMore: boolean = true;
+  currentPage: number = 1;
+  userName: string = '';
 
   constructor(
-    // private photoService: PhotoService,
+    private photoService: PhotoService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -30,7 +33,7 @@ export class PhotoListComponent implements OnInit, OnDestroy {
     // this.photoService
     // .listFromUser(userName)
     // .subscribe(photos => this.photos = photos);
-
+    this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data['photos'];
     this.debounce
     .pipe(debounceTime(300))
@@ -41,6 +44,19 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   //É chamado toda vez que um objeto é destruido
   ngOnDestroy(): void {
     this.debounce.unsubscribe();
+  }
+
+  load() {
+    this.photoService.listFromUserPaginated(this.userName, ++this.currentPage)
+    .subscribe(photos => {
+      //this.photos.push(...photos); //Os ... seria o mesmo de um FOR, ele pega todos os itens de photos e adiciona no push
+      this.photos = this.photos.concat(photos);
+
+      console.log(photos.length);
+    if (photos.length == 0) {
+      this.hasMore = false;
+    }
+    });
   }
 
 }
