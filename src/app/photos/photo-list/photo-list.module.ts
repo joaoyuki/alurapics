@@ -1,3 +1,4 @@
+import { DarkingOnHoverModule } from './../../shared/components/directives/darkOnHover/darking-on-hover.module';
 import { SearchComponent } from './search/search.component';
 import { CardModule } from './../../shared/components/card/card.module';
 import { PhotoModule } from './../photo/photo.module';
@@ -19,7 +20,8 @@ import { LoadButtonComponent } from './load-button/load-button.component';
   imports: [
     CommonModule,
     PhotoModule,
-    CardModule
+    CardModule,
+    DarkingOnHoverModule
   ]
 })
 export class PhotoListModel {
