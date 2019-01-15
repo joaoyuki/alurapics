@@ -8,11 +8,10 @@
             placeholder="user name"
             formControlName="userName"
             autofocus>
-        <small
-         *ngIf="loginForm.get('userName').errors?.required"
-          class="text-danger d-block mt-2">
-          User Name is required
-        </small>
+        <app-message
+         textoMensagem="userName is required"
+         *ngIf="loginForm.get('userName').errors?.required">
+      </app-message>
     </div>
 
     <div class="form-group">
@@ -21,12 +20,10 @@
             class="form-control"
             formControlName="password"
             placeholder="password">
-
-      <small
-          *ngIf="loginForm.get('password').errors?.required"
-          class="text-danger d-block mt-2">
-          Password is required
-      </small>
+      <app-message
+        textoMensagem="Password is required"
+        *ngIf="loginForm.get('password').errors?.required">
+      </app-message>
     </div>
 
     <button
