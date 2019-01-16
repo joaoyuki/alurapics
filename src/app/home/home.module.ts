@@ -3,6 +3,7 @@ import { SigninComponent } from './sigin/signin.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { CommonModule } from '@angular/common';
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    MessageModule
+    MessageModule,
+    RouterModule
   ]
 })
 export class HomeModule {
