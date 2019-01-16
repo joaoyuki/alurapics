@@ -39,7 +39,7 @@ export class SigninComponent implements OnInit {
     .authenticate(userName, password)
     .subscribe( () => {
       console.log('autenticado');
-      this.router.navigateByUrl('user/' + userName);
+      this.router.navigate(['user', userName]); //rota,segmento(paramentro) = userName/:userName
     }, erro => {
       console.log(erro);
       console.log('erro');
