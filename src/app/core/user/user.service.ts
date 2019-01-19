@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { TokenService } from '../token/token.service';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { User } from './user';
 import * as jwt_decode from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  private userSubject = new Subject<User>(); //Ele vai emitir um User e quem fizer o subscribe, vai receber um User
+  private userSubject = new BehaviorSubject<User>(null); //Ele vai emitir um User e quem fizer o subscribe, vai receber um User
 
   constructor(private tokenService: TokenService) {
     //Esse serviço vai ser criado assim que eu entrar no sistema, antes mesmo de tentar logar
