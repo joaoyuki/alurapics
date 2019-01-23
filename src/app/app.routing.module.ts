@@ -7,6 +7,7 @@ import { PhotoListComponent } from './photos/photo-list/photo-list.component';
 import { NotFoundComponent } from './erros/not-found/not-found.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { SigninComponent } from './home/sigin/signin.component';
+import { SignupComponent } from './home/signup/signup.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     component: SigninComponent,
     canActivate: [AuthGuard]
   },
+  { path: 'signup', component: SignupComponent },
   {
     path: 'user/:userName',
     component: PhotoListComponent,
