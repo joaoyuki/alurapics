@@ -1,7 +1,10 @@
+import { Router } from '@angular/router';
+import { SignupService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { lowerCaseValidator } from 'src/app/shared/validators/lowercase.validator';
+import { NewUser } from './newUser';
 
 @Component({
   templateUrl: './signup.component.html'
@@ -13,7 +16,9 @@ export class SignupComponent implements OnInit{
 
   constructor(
     private formBuilder: FormBuilder,
-    private userNotTakenValidatorService: UserNotTakenValidatorService
+    private userNotTakenValidatorService: UserNotTakenValidatorService,
+    private signupService: SignupService,
+    private router: Router
   ) {
 
   }
@@ -45,10 +50,21 @@ export class SignupComponent implements OnInit{
       password: ['',
       [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(3),
         Validators.maxLength(14)
       ]]
     });
+  }
+
+  signup() {
+    const newUser = this.signupForm.getRawValue() as NewUser; //Retorna um objeto javascript com os campos e valores do formulário
+    this.signupService.signup(newUser)
+      .subscribe(() => {
+        this.router.navigate(['']);
+      }, erro => {
+        console.log(erro);
+      });
+
   }
 
 }
