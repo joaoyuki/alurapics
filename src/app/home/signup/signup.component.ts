@@ -2,17 +2,18 @@ import { Router } from '@angular/router';
 import { SignupService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { lowerCaseValidator } from 'src/app/shared/validators/lowercase.validator';
 import { NewUser } from './newUser';
 
 @Component({
   templateUrl: './signup.component.html'
 })
-export class SignupComponent implements OnInit{
+export class SignupComponent implements OnInit {
 
 
   signupForm: FormGroup;
+  @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,6 +55,8 @@ export class SignupComponent implements OnInit{
         Validators.maxLength(14)
       ]]
     });
+
+    this.inputEmail.nativeElement.focus();
   }
 
   signup() {
